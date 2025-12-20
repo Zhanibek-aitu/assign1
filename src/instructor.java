@@ -1,7 +1,7 @@
 public class instructor {
     public String name, info;
-    public int id;
-    public int course_id;
+    private int id;
+    private int course_id;
 
     public instructor(String _name, String _info, int _id, int _course_id){
         setValues(_name, _info, _id,_course_id);

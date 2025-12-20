@@ -1,5 +1,6 @@
 public class course {
-    public int id,university_id;
+    private int id;
+    public int university_id;
     public String name;
 
     public course(String _name, int _id, int _university_id){

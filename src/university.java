@@ -1,7 +1,7 @@
 public class university {
     public String name;
     public String location;
-    public int id;
+    private int id;
 
     public university(String _name, String _location, int _id){
         setValues(_name, _location, _id);
