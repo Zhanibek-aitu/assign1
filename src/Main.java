@@ -1,32 +1,32 @@
 //University Course Management System
+import java.util.ArrayList;
 public class Main{
     public static void main(String[] args){
         university AITU = new university("Astana Information Technology University","Astana, Mangilik El, 020000",502);
-
-            instructor l001 = new instructor("Orazova Arailym","senior-lecturer",1,1);
-
-            instructor l002 = new instructor("Askar Khaimuldin","senior-lecturer",2,1);
-
         course OOP = new course("Object-Oriented programming",1,502);
-
         course ItP = new course("Introduction to Programming",3,502);
         university SDU = new university("Suleyman Demirel University","Kaskelen, Abylai khan, 1/1",302);
-            instructor l003 = new instructor("Zhanibek Abilkhan","senior-lecturer",1,2);
-
         course LA = new course("Linear Algebra",2,302);
 
-        System.out.println("Compare multiple objects: ");
-        System.out.println(" - Courses: ");
-        if(OOP.university_id == ItP.university_id){
-            System.out.println(OOP.name + " and " + ItP.name + " are offered at the same university\n");
-        }else{
-            System.out.println(OOP.name + " and " + ItP.name + " are offered at the different universities\n");
+        ArrayList<university_member> members = new ArrayList<>();
+        members.add(new instructor("Orazova Arailym", "Senior Lecturer", 1, 1));
+        members.add(new instructor("Askar Khaimuldin", "Senior Lecturer", 2, 3));
+        members.add(new student("Gordan Freeman", "Ph.D Student", 255004, "SE-2505"));
+        members.add(new student("Alyx Vance", "Bachelor", 255005, "CS-2505"));
+
+        System.out.println("All University Members:");
+        for(university_member m: members){
+            System.out.println(m.toString());
         }
-        System.out.println(" - Instructors: ");
-        if(l001.info == l002.info){
-            System.out.println(l001.name + " and " + l002.name + " have the same rank");
-        } else{
-            System.out.println(l001.name + " and " + l002.name + " have different ranks");
+
+        System.out.println("Students in group SE-2505:");
+        for(university_member m: members){
+            if(m instanceof student){
+                student s=(student) m;
+                if(s.getGroupId().equals("SE-2505")){
+                    System.out.println(s.getName());
+                }
+            }
         }
     }
 }
