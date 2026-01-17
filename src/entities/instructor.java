@@ -1,3 +1,5 @@
+package entities;
+
 public class instructor extends university_member {
     private int course_id;
 

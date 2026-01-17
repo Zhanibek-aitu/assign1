@@ -1,34 +1,33 @@
-//University Course Management System
-import java.util.ArrayList;
-public class Main{
-    public static void main(String[] args){
-        university AITU = new university("Astana Information Technology University","Astana, Mangilik El, 020000",522);
-        course OOP = new course("Object-Oriented programming",1,502);
-        course ItP = new course("Introduction to Programming",3,502);
-        university SDU = new university("Suleyman Demirel University","Kaskelen, Abylai khan, 1/1",302);
-        course LA = new course("Linear Algebra",2,302);
+import data.PostgresDB;
+import data.interfaces.IDB;
+import entities.student;
+import repositories.StudentRepository;
+import repositories.interfaces.IStudentRepository;
 
-        ArrayList<university_member> members = new ArrayList<>();
-        members.add(new instructor("Orazova Arailym", "Senior Lecturer", 1, 1));
-        members.add(new instructor("Askar Khaimuldin", "Senior Lecturer", 2, 3));
-        members.add(new student("Gordan Freeman", "Ph.D Student", 255004, "SE-2505"));
-        members.add(new student("Alyx Vance", "Bachelor", 255005, "CS-2505"));
+import java.util.List;
 
-        System.out.println("All University Members:");
-        for(university_member m: members){
-            System.out.println(m.toString());
+public class Main {
+    public static void main(String[] args) {
+
+        IDB db = new PostgresDB();
+
+        IStudentRepository repo = new StudentRepository(db);
+
+        System.out.println("--- DEMO: Working with PostgreSQL ---");
+        System.out.println("Adding a new student to Database...");
+        student newStudent = new student("Baidaulet", "Student", 255000, "CS-2500");
+        boolean result = repo.createStudent(newStudent);
+
+        if (result) {
+            System.out.println("Student added successfully");
+        } else {
+            System.out.println("Failed to add student");
         }
+        System.out.println("\nGetting all students from Database:");
+        List<student> studentsFromDB = repo.getAllStudents();
 
-        System.out.println("Students in group SE-2505:");
-        for(university_member m: members){
-            if(m instanceof student){
-                student s=(student) m;
-                if(s.getGroupId().equals("SE-2505")){
-                    System.out.println(s.getName());
-                }
-            }
+        for (student s : studentsFromDB) {
+            System.out.println(s.toString());
         }
-
-
     }
 }

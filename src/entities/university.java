@@ -1,3 +1,5 @@
+package entities;
+
 public class university {
     public String name;
     public String location;

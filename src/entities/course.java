@@ -1,3 +1,5 @@
+package entities;
+
 public class course {
     private int id;
     public int university_id;

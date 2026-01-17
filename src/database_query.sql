@@ -30,3 +30,4 @@ INSERT INTO student(name,info,id,group_id) VALUES
 INSERT INTO instructor(name,info,id,course_id) VALUES
 ('Orazova Arailym', 'Senior Lecturer', 1,1),
 ('Askar Khaimuldin', 'Senior Lecturer', 2,3);
+UPDATE student SET group_id='CS-2506' WHERE id=255005;

@@ -1,3 +1,5 @@
+package entities;
+
 public class student extends university_member {
     private String group_id;
 

@@ -1,3 +1,5 @@
+package entities;
+
 import java.util.Objects;
 public class university_member {
     protected String name, info;
@@ -11,6 +13,9 @@ public class university_member {
     public int getId(){ return id;}
     public String getName(){
         return name;
+    }
+    public String getInfo() {
+        return info;
     }
 
     @Override
