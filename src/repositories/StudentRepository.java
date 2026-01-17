@@ -41,6 +41,47 @@ public class StudentRepository implements IStudentRepository {
         }
         return false;
     }
+    @Override
+    public boolean updateStudent(int id, String newGroup) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "UPDATE student SET group_id = ? WHERE id = ?";
+            PreparedStatement st = con.prepareStatement(sql);
+
+            st.setString(1, newGroup);
+            st.setInt(2, id);
+
+            st.execute();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        } finally {
+            try { if (con != null) con.close(); } catch (Exception e) { e.printStackTrace(); }
+        }
+    }
+
+    @Override
+    public boolean deleteStudent(int id) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "DELETE FROM student WHERE id = ?";
+            PreparedStatement st = con.prepareStatement(sql);
+
+            st.setInt(1, id);
+
+            st.execute();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        } finally {
+            try { if (con != null) con.close(); } catch (Exception e) { e.printStackTrace(); }
+        }
+    }
+
 
     @Override
     public List<student> getAllStudents() {
