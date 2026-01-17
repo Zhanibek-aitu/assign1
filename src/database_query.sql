@@ -21,3 +21,12 @@ CREATE TABLE university(
    name VARCHAR(50),
    location VARCHAR(100)
 );
+INSERT INTO university(name,location, id) VALUES
+('Astana Information Technology University', 'Astana, Mangilik El, 020000', 522),
+('Suleyman Demirel University', 'Kaskelen, Abylai khan, 1/1', 302);
+INSERT INTO student(name,info,id,group_id) VALUES
+('Gordan Freeman','Ph.D Student',255004,'SE-2505'),
+('Alyx Vance', 'Bachelor',255005,'CS-2505');
+INSERT INTO instructor(name,info,id,course_id) VALUES
+('Orazova Arailym', 'Senior Lecturer', 1,1),
+('Askar Khaimuldin', 'Senior Lecturer', 2,3);

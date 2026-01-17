@@ -2,7 +2,7 @@
 import java.util.ArrayList;
 public class Main{
     public static void main(String[] args){
-        university AITU = new university("Astana Information Technology University","Astana, Mangilik El, 020000",502);
+        university AITU = new university("Astana Information Technology University","Astana, Mangilik El, 020000",522);
         course OOP = new course("Object-Oriented programming",1,502);
         course ItP = new course("Introduction to Programming",3,502);
         university SDU = new university("Suleyman Demirel University","Kaskelen, Abylai khan, 1/1",302);
@@ -28,5 +28,7 @@ public class Main{
                 }
             }
         }
+
+
     }
 }
