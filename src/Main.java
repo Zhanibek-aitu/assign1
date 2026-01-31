@@ -11,6 +11,7 @@ public class Main {
 
         IDB db = new PostgresDB();
         IStudentRepository repo = new StudentRepository(db);
+        repo.printLog("Application started");
 
         System.out.println("--- DEMO: Working with PostgreSQL ---");
         System.out.println("\n1. Adding main student (Baidaulet)...");
@@ -23,27 +24,33 @@ public class Main {
         } else {
             System.out.println("Student might already exist");
         }
+
         System.out.println("\n2. Getting all students from Database:");
         List<student> studentsFromDB = repo.getAllStudents();
-        for (student s : studentsFromDB) {
-            System.out.println(s.toString());
-        }
+
+        studentsFromDB.forEach(s -> System.out.println(s.toString()));
+
 
         System.out.println("\n--- DEMO: Testing UPDATE and DELETE ---");
 
         int testId = 999;
-        student testStudent = new student("Steve", "Student", testId, "Group");
-        repo.createStudent(testStudent);
-        System.out.println("Created test student: " + testStudent.getName());
 
-        System.out.println("--> Updating group for ID " + testId + "...");
-        repo.updateStudent(testId, "NEW-GROUP-X");
-        System.out.println("Updated");
+        if (IStudentRepository.checkId(testId)) {
+            student testStudent = new student("Steve", "Student", testId, "Group");
+            repo.createStudent(testStudent);
+            System.out.println("Created test student: " + testStudent.getName());
 
-        System.out.println("--> Deleting student with ID " + testId + "...");
-        repo.deleteStudent(testId);
-        System.out.println("Deleted");
+            System.out.println("--> Updating group for ID " + testId + "...");
+            repo.updateStudent(testId, "NEW-GROUP-X");
+            System.out.println("Updated");
 
-        System.out.println("\n--- FINISHED ---");
+            System.out.println("--> Deleting student with ID " + testId + "...");
+            repo.deleteStudent(testId);
+            System.out.println("Deleted");
+        } else {
+            System.out.println("Invalid ID provided!");
+        }
+
+        repo.printLog("Application finished");
     }
 }
