@@ -1,8 +1,8 @@
-package repositories;
+package org.univer.repositories;
 
-import data.interfaces.IDB;
-import entities.student;
-import repositories.interfaces.IStudentRepository;
+import org.univer.data.interfaces.IDB;
+import org.univer.entities.student;
+import org.univer.repositories.interfaces.IStudentRepository;
 
 import java.sql.*;
 import java.util.ArrayList;

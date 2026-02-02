@@ -1,4 +1,4 @@
-package entities;
+package org.univer.entities;
 
 public class course {
     private int id;

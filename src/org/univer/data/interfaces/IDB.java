@@ -1,4 +1,4 @@
-package data.interfaces;
+package org.univer.data.interfaces;
 
 import java.sql.Connection;
 import java.sql.SQLException;

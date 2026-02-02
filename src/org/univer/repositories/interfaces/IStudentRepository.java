@@ -1,6 +1,6 @@
-package repositories.interfaces;
+package org.univer.repositories.interfaces;
 
-import entities.student;
+import org.univer.entities.student;
 import java.util.List;
 
 public interface IStudentRepository {

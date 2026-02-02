@@ -1,4 +1,4 @@
-package entities;
+package org.univer.entities;
 
 public class student extends university_member {
     private String group_id;

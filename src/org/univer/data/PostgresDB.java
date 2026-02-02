@@ -1,6 +1,6 @@
-package data;
+package org.univer.data;
 
-import data.interfaces.IDB;
+import org.univer.data.interfaces.IDB;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

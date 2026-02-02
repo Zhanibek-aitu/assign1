@@ -1,4 +1,4 @@
-package entities;
+package org.univer.entities;
 
 import java.util.Objects;
 public class university_member {

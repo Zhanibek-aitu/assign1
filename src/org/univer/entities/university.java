@@ -1,4 +1,4 @@
-package entities;
+package org.univer.entities;
 
 public class university {
     public String name;
