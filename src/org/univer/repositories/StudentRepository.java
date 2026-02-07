@@ -17,6 +17,7 @@ public class StudentRepository implements IStudentRepository {
 
     @Override
     public boolean createStudent(student student) {
+        logOperation("Creating student " + student.getName());
         Connection con = null;
         try {
             con = db.getConnection();
@@ -25,13 +26,13 @@ public class StudentRepository implements IStudentRepository {
 
             st.setString(1, student.getName());
             st.setString(2, student.getInfo());
-            st.setString(3, student.getGroupId());
+            st.setString(3, student.getGroup_id());
             st.setInt(4, student.getId());
 
             st.execute();
             return true;
         } catch (SQLException | ClassNotFoundException e) {
-            System.out.println(e);
+            System.out.println("Error creating student: " + e.getMessage());
         } finally {
             try {
                 if (con != null) con.close();
@@ -41,6 +42,7 @@ public class StudentRepository implements IStudentRepository {
         }
         return false;
     }
+
     @Override
     public boolean updateStudent(int id, String newGroup) {
         Connection con = null;
@@ -55,7 +57,7 @@ public class StudentRepository implements IStudentRepository {
             st.execute();
             return true;
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("Error updating student: " + e.getMessage());
             return false;
         } finally {
             try { if (con != null) con.close(); } catch (Exception e) { e.printStackTrace(); }
@@ -75,13 +77,12 @@ public class StudentRepository implements IStudentRepository {
             st.execute();
             return true;
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("Error deleting student: " + e.getMessage());
             return false;
         } finally {
             try { if (con != null) con.close(); } catch (Exception e) { e.printStackTrace(); }
         }
     }
-
 
     @Override
     public List<student> getAllStudents() {
@@ -94,25 +95,47 @@ public class StudentRepository implements IStudentRepository {
             ResultSet rs = st.executeQuery(sql);
             List<student> students = new ArrayList<>();
             while (rs.next()) {
-                student s = new student(
-                        rs.getString("name"),
-                        rs.getString("info"),
-                        rs.getInt("id"),
-                        rs.getString("group_id")
-                );
+                student s = student.builder()
+                        .id(rs.getInt("id"))
+                        .name(rs.getString("name"))
+                        .info(rs.getString("info"))
+                        .group_id(rs.getString("group_id"))
+                        .build();
+
                 students.add(s);
             }
             return students;
         } catch (SQLException | ClassNotFoundException e) {
-            System.out.println(e);
+            System.out.println("Error getting all students: " + e.getMessage());
         } finally {
             try { if (con != null) con.close(); } catch (SQLException e) { e.printStackTrace(); }
         }
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
     public student getStudent(int id) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "SELECT id, name, info, group_id FROM student WHERE id = ?";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, id);
+
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return student.builder()
+                        .id(rs.getInt("id"))
+                        .name(rs.getString("name"))
+                        .info(rs.getString("info"))
+                        .group_id(rs.getString("group_id"))
+                        .build();
+            }
+        } catch (Exception e) {
+            System.out.println("Error getting student: " + e.getMessage());
+        } finally {
+            try { if (con != null) con.close(); } catch (Exception e) { e.printStackTrace(); }
+        }
         return null;
     }
 }

@@ -1,0 +1,13 @@
+GET http://localhost:8080/students
+
+###
+POST http://localhost:8080/students
+Content-Type: application/json
+
+{
+  "id": 7777,
+  "name": "New Student",
+  "group": "SE-2400"
+}
+###
+DELETE http://localhost:8080/students/7777

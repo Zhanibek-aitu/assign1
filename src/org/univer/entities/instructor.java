@@ -1,15 +1,17 @@
 package org.univer.entities;
 
-public class instructor extends university_member {
-    private int course_id;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
-    public instructor(String name, String info, int id, int _course_id){
-        super(name,info,id);
-        course_id=_course_id;
-    }
-    @Override
-    public String toString(){
-        return super.toString() + "\nCourse ID: " + course_id +  "\n";
-    }
+@Data
+@SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+class Instructor extends university_member {
+
+    private String department;
+    private Double salary;
+
 }
-

@@ -13,6 +13,9 @@ public interface IStudentRepository {
     default void printLog(String message) {
         System.out.println("📊 LOG: " + message);
     }
+    default void logOperation(String operation) {
+        System.out.println("LOG: Operation executed - " + operation);
+    }
 
     static boolean checkId(int id) {
         return id > 0;
